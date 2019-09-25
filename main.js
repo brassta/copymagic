@@ -65,7 +65,7 @@
         if(err) throw err;
         setTimeout(() => {
             clearIgnoredDirectories()
-            console.log('done!');
+            console.log('all done!');
         }, 4000);
     });
 
