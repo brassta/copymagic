@@ -1,10 +1,10 @@
 (function() {
     const fs = require('fs-extra');
     const path = require('path');
-    const ignoreDirectoriesList = ['.idea', 'node_modules','.git'];
+    const ignoreDirectoriesList = ['.idea', 'node_modules', '.git', 'dist', 'e2e'];
     const { COPYFILE_EXCL } = fs.constants;
-    const source = 'f:\\xampp\\htdocs\\angular-all\\Web2GoProj2\\'
-    const destination = 'c:\\Users\\user\\Desktop\\copyfolder\\';
+    const source = 'e:\\projects\\Web2GoProject\\'
+    const destination = 'c:\\Users\\Branko Stevanovic\\Desktop\\svn-source\\';
 
     fs.emptyDirSync(destination);
 
@@ -12,7 +12,7 @@
         var results = [];
         fs.readdir(dir, function(err, list) {
             if(err) return done(err);
-            const targetFolder = path.join(target, dir.replace(source,''));
+            const targetFolder = path.join(target, dir.replace(source, ''));
             if(!fs.existsSync(targetFolder)){
                 fs.mkdir(targetFolder, 0o777, function(err) {
                     if(err){
@@ -32,10 +32,10 @@
                         });
                     }
                     else {
-                        if(Date.now() - stat.mtimeMs < 86400000){
+                        if(Date.now() - stat.mtimeMs < 86400000/2){
                             fs.copy(founded, `${targetFolder}\\${path.basename(founded)}`, function(err) {
                                 if(err) return console.error('ene', err);
-                                // console.log('copied', founded);
+                                console.log('copied', founded);
                             });
                         }
 
@@ -66,7 +66,7 @@
         setTimeout(() => {
             clearIgnoredDirectories()
             console.log('all done!');
-        }, 4000);
+        }, 10000);
     });
 
 }());
